@@ -3,6 +3,7 @@ package org.example.aionystesttask.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.aionystesttask.dto.NoteRequestDto;
 import org.example.aionystesttask.dto.NoteResponseDto;
+import org.example.aionystesttask.exception.EntityNotFoundException;
 import org.example.aionystesttask.service.NoteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,8 @@ public class NoteController {
     }
 
     @GetMapping("/{id}")
-    public NoteResponseDto getNoteById(@PathVariable Long id) {
+    public NoteResponseDto getNoteById(@PathVariable Long id)
+            throws EntityNotFoundException {
         return noteService.getById(id);
     }
 
@@ -35,7 +37,7 @@ public class NoteController {
     public NoteResponseDto updateNote(
             @PathVariable Long id,
             @RequestBody NoteRequestDto noteRequestDto
-    ) {
+    ) throws EntityNotFoundException {
         return noteService.update(id, noteRequestDto);
     }
 

@@ -3,6 +3,7 @@ package org.example.aionystesttask.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.aionystesttask.dto.NoteRequestDto;
 import org.example.aionystesttask.dto.NoteResponseDto;
+import org.example.aionystesttask.exception.EntityNotFoundException;
 import org.example.aionystesttask.mapper.NoteMapper;
 import org.example.aionystesttask.model.Note;
 import org.example.aionystesttask.repository.NoteRepository;
@@ -25,7 +26,8 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public NoteResponseDto getById(Long id) {
+    public NoteResponseDto getById(Long id)
+            throws EntityNotFoundException {
         return noteMapper.toDto(findById(id));
     }
 
@@ -36,7 +38,8 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public NoteResponseDto update(Long id, NoteRequestDto noteRequestDto) {
+    public NoteResponseDto update(Long id, NoteRequestDto noteRequestDto)
+            throws EntityNotFoundException {
         findById(id);
         Note note = noteMapper.toEntity(noteRequestDto);
         note.setId(id);
@@ -48,9 +51,9 @@ public class NoteServiceImpl implements NoteService {
         noteRepository.deleteById(id);
     }
 
-    private Note findById(Long id) {
+    private Note findById(Long id) throws EntityNotFoundException {
         return noteRepository.findById(id).orElseThrow(
-                RuntimeException::new
+                () -> new EntityNotFoundException("Can't find note with id: " + id)
         );
     }
 }
