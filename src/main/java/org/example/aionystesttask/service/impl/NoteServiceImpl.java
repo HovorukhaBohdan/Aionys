@@ -1,5 +1,6 @@
 package org.example.aionystesttask.service.impl;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.aionystesttask.dto.NoteRequestDto;
 import org.example.aionystesttask.dto.NoteResponseDto;
@@ -9,8 +10,6 @@ import org.example.aionystesttask.model.Note;
 import org.example.aionystesttask.repository.NoteRepository;
 import org.example.aionystesttask.service.NoteService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

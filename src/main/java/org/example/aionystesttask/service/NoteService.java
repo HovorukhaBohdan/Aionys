@@ -1,10 +1,9 @@
 package org.example.aionystesttask.service;
 
+import java.util.List;
 import org.example.aionystesttask.dto.NoteRequestDto;
 import org.example.aionystesttask.dto.NoteResponseDto;
 import org.example.aionystesttask.exception.EntityNotFoundException;
-
-import java.util.List;
 
 public interface NoteService {
     List<NoteResponseDto> getAll();
