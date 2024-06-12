@@ -23,8 +23,6 @@ public class Note {
     private String title;
     @Column(nullable = false)
     private String content;
-    @Column(nullable = false, name = "is_completed")
-    private Boolean isCompleted = false;
     @Column(nullable = false, name = "is_deleted")
     private Boolean isDeleted = false;
 }
